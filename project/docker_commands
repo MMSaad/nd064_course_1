@@ -1,11 +1,66 @@
 ## Docker commands used to build the application 
-# TODO: insert the docker build command
+docker build -t techtrends:1.0.0 .
 
 ## Docker commands used to run the application
-# TODO: insert the docker run command
+docker run -p 7111:3111 techtrends:1.0.0
+
+## Docker get running containers
+docker ps
 
 ## Docker commands used to get the application logs
-# TODO: insert the docker logs command
+docker logs d4e43dc050b9
 
 ## Logs from the container running the TechTrends application
-# TODO: paste logs from the Docker container 
+ * Serving Flask app 'app' (lazy loading)
+ * Environment: production
+   WARNING: This is a development server. Do not use it in a production deployment.
+   Use a production WSGI server instead.
+ * Debug mode: off
+2022-11-17 10:09:43,206 - werkzeug - WARNING -  * Running on all addresses.
+   WARNING: This is a development server. Do not use it in a production deployment.
+2022-11-17 10:09:43,206 - werkzeug - INFO -  * Running on http://172.17.0.2:3111/ (Press CTRL+C to quit)
+2022-11-17 10:09:47,669 - app - INFO - Index page retrieved with post count of 6
+2022-11-17 10:09:47,674 - werkzeug - INFO - 172.17.0.1 - - [17/Nov/2022 10:09:47] "GET / HTTP/1.1" 200 -
+2022-11-17 10:09:47,689 - werkzeug - INFO - 172.17.0.1 - - [17/Nov/2022 10:09:47] "GET /static/css/main.css HTTP/1.1" 304 -
+2022-11-17 10:09:50,339 - app - INFO - Article 2020 CNCF Annual Report Retrieved!
+2022-11-17 10:09:50,339 - app - INFO - post 1 and 2020 CNCF Annual Report retrieved
+2022-11-17 10:09:50,341 - werkzeug - INFO - 172.17.0.1 - - [17/Nov/2022 10:09:50] "GET /1 HTTP/1.1" 200 -
+2022-11-17 10:09:50,355 - werkzeug - INFO - 172.17.0.1 - - [17/Nov/2022 10:09:50] "GET /static/css/main.css HTTP/1.1" 304 -
+2022-11-17 10:09:53,409 - app - ERROR - Article with id 100 Not found
+2022-11-17 10:09:53,409 - app - ERROR - A non-existing article with id 100 is accessed and a 404 page is returned
+2022-11-17 10:09:53,410 - werkzeug - INFO - 172.17.0.1 - - [17/Nov/2022 10:09:53] "GET /100 HTTP/1.1" 404 -
+2022-11-17 10:09:53,428 - werkzeug - INFO - 172.17.0.1 - - [17/Nov/2022 10:09:53] "GET /static/css/main.css HTTP/1.1" 304 -
+2022-11-17 10:09:57,380 - app - INFO - The "About Us" page is retrieved
+2022-11-17 10:09:57,381 - werkzeug - INFO - 172.17.0.1 - - [17/Nov/2022 10:09:57] "GET /about HTTP/1.1" 200 -
+2022-11-17 10:09:57,395 - werkzeug - INFO - 172.17.0.1 - - [17/Nov/2022 10:09:57] "GET /static/css/main.css HTTP/1.1" 304 -
+2022-11-17 10:09:59,082 - app - INFO - Creation endpoint retrieved for GET
+2022-11-17 10:09:59,085 - werkzeug - INFO - 172.17.0.1 - - [17/Nov/2022 10:09:59] "GET /create HTTP/1.1" 200 -
+2022-11-17 10:09:59,100 - werkzeug - INFO - 172.17.0.1 - - [17/Nov/2022 10:09:59] "GET /static/css/main.css HTTP/1.1" 304 -
+2022-11-17 10:10:08,870 - app - INFO - A new article is created, with title Sample and content A new Sample post Successfully created
+2022-11-17 10:10:08,870 - werkzeug - INFO - 172.17.0.1 - - [17/Nov/2022 10:10:08] "POST /create HTTP/1.1" 302 -
+2022-11-17 10:10:08,874 - app - INFO - Index page retrieved with post count of 7
+2022-11-17 10:10:08,875 - werkzeug - INFO - 172.17.0.1 - - [17/Nov/2022 10:10:08] "GET / HTTP/1.1" 200 -
+2022-11-17 10:10:08,891 - werkzeug - INFO - 172.17.0.1 - - [17/Nov/2022 10:10:08] "GET /static/css/main.css HTTP/1.1" 304 -
+2022-11-17 10:10:14,719 - app - INFO - Health check endpoint invoked
+2022-11-17 10:10:14,719 - werkzeug - INFO - 172.17.0.1 - - [17/Nov/2022 10:10:14] "GET /healthz HTTP/1.1" 200 -
+2022-11-17 10:10:18,481 - app - INFO - Metrics endpoint invoked
+2022-11-17 10:10:18,481 - werkzeug - INFO - 172.17.0.1 - - [17/Nov/2022 10:10:18] "GET /metrics HTTP/1.1" 200 -
+2022-11-17 10:11:11,194 - app - INFO - Index page retrieved with post count of 7
+2022-11-17 10:11:11,194 - werkzeug - INFO - 172.17.0.1 - - [17/Nov/2022 10:11:11] "GET / HTTP/1.1" 200 -
+2022-11-17 10:11:11,207 - werkzeug - INFO - 172.17.0.1 - - [17/Nov/2022 10:11:11] "GET /static/css/main.css HTTP/1.1" 304 -
+2022-11-17 10:11:12,828 - app - INFO - Creation endpoint retrieved for GET
+2022-11-17 10:11:12,828 - werkzeug - INFO - 172.17.0.1 - - [17/Nov/2022 10:11:12] "GET /create HTTP/1.1" 200 -
+2022-11-17 10:11:12,845 - werkzeug - INFO - 172.17.0.1 - - [17/Nov/2022 10:11:12] "GET /static/css/main.css HTTP/1.1" 304 -
+2022-11-17 10:11:19,234 - app - ERROR - Creation of article is failed due to missing title
+2022-11-17 10:11:19,234 - app - INFO - Creation endpoint retrieved for GET
+2022-11-17 10:11:19,235 - werkzeug - INFO - 172.17.0.1 - - [17/Nov/2022 10:11:19] "POST /create HTTP/1.1" 200 -
+2022-11-17 10:11:19,255 - werkzeug - INFO - 172.17.0.1 - - [17/Nov/2022 10:11:19] "GET /static/css/main.css HTTP/1.1" 304 -
+2022-11-17 10:11:20,666 - app - ERROR - Creation of article is failed due to missing title
+2022-11-17 10:11:20,666 - app - INFO - Creation endpoint retrieved for GET
+2022-11-17 10:11:20,666 - werkzeug - INFO - 172.17.0.1 - - [17/Nov/2022 10:11:20] "POST /create HTTP/1.1" 200 -
+2022-11-17 10:11:20,682 - werkzeug - INFO - 172.17.0.1 - - [17/Nov/2022 10:11:20] "GET /static/css/main.css HTTP/1.1" 304 -
+2022-11-17 10:11:42,107 - app - INFO - A new article is created, with title second sample and content A new second sample Successfully created   
+2022-11-17 10:11:42,107 - werkzeug - INFO - 172.17.0.1 - - [17/Nov/2022 10:11:42] "POST /create HTTP/1.1" 302 -
+2022-11-17 10:11:42,113 - app - INFO - Index page retrieved with post count of 8
+2022-11-17 10:11:42,113 - werkzeug - INFO - 172.17.0.1 - - [17/Nov/2022 10:11:42] "GET / HTTP/1.1" 200 -
+2022-11-17 10:11:42,130 - werkzeug - INFO - 172.17.0.1 - - [17/Nov/2022 10:11:42] "GET /static/css/main.css HTTP/1.1" 304 -
