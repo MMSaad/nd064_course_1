@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: techtrends
+  namespace: {{ .Values.namespace.name }}
+spec:
+  replicas: {{.Values.replicaCount}}
+  selector:
+    matchLabels:
+      app: techtrends
+  template:
+    metadata:
+      labels:
+        app: techtrends
+    spec:
+      containers:
+      - name: techtrends
+        image: mmsaad85/{{ .Values.image.repository}}:{{ .Values.image.tag}}
+        pullPolicy: {{ .Values.image.pullPolicy}}
+        livenessProbe:
+          httpGet:
+            path: {{.Values.livenessProbe.path}}
+            port: {{.Values.containerPort}}
+        readinessProbe:
+          httpGet:
+            path: {{.Values.readinessProbe.path}}
+            port: {{.Values.containerPort}}
+        resources:
+          requests:
+            memory: {{.Values.resources.requests.memory}}
+            cpu: {{.Values.resources.requests.CPU}}
+          limits:
+            memory: {{.Values.resources.limits.memory}}
+            cpu: {{.Values.resources.limits.CPU}}
+        ports:
+        - containerPort: {{.Values.containerPort}}
