@@ -1,0 +1,29 @@
+name: TechTrends - Package with Docker
+on:
+  push:
+   branches:
+     - main
+
+jobs:
+  build:
+   runs-on: ubuntu-latest
+   timeout-minutes: 10
+   steps:
+    - uses: actions/checkout@v2
+    - uses: actions/setup-python@v4
+      with:
+       python-version: '3.8' 
+    - name: Login to Docker Hub
+      uses: docker/login-action@v2
+      with:
+        username: ${{ secrets.DOCKERHUB_USERNAME }}
+        password: ${{ secrets.DOCKERHUB_TOKEN }}
+    - name: build docker image
+      run: docker build -t techtrends:latest .
+      working-directory: /project/techtrends
+    - name: tag docker image
+      run: docker tag techtrends:latest mmsaad85/techtrends:latest
+      working-directory: /project/techtrends
+    - name: push to docker hub
+      run: docker push mmsaad85/techtrends:latest
+      working-directory: /project/techtrends
