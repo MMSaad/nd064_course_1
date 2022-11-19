@@ -18,12 +18,17 @@ jobs:
       with:
         username: ${{ secrets.DOCKERHUB_USERNAME }}
         password: ${{ secrets.DOCKERHUB_TOKEN }}
+    - name: Set Version Variable
+      run: |
+          VER=$(cat VERSION)
+          echo "VERSION=$VER" >> $GITHUB_ENV
+      working-directory: project/techtrends
     - name: build docker image
-      run: docker build -t techtrends:latest .
+      run: docker build -t techtrends:${{ env.VERSION }} .
       working-directory: project/techtrends
     - name: tag docker image
-      run: docker tag techtrends:latest mmsaad85/techtrends:latest
+      run: docker tag techtrends:${{ env.VERSION }} mmsaad85/techtrends:${{ env.VERSION }}
       working-directory: project/techtrends
     - name: push to docker hub
-      run: docker push mmsaad85/techtrends:latest
+      run: docker push mmsaad85/techtrends:${{ env.VERSION }}
       working-directory: project/techtrends
