@@ -39,13 +39,22 @@ def index():
  # Define the healthz endpoint
 @app.route('/healthz')
 def healthcheck():
-    health_response = app.response_class(
+    app.logger.info('Health check endpoint invoked ')
+    connection = get_db_connection()
+    posts_table_exists = connection.execute("SELECT name FROM sqlite_master WHERE type='table' AND name='posts';").fetchone()
+    connection.close()
+    if posts_table_exists is None:
+     return app.response_class(
+            response=json.dumps({"result":"ERROR - unhealthy"}),
+            status=500,
+            mimetype='application/json'
+     )
+    else:
+     return app.response_class(
             response=json.dumps({"result":"OK - healthy"}),
             status=200,
             mimetype='application/json'
-    )
-    app.logger.info('Health check endpoint invoked ')
-    return health_response
+     )
 
 @app.route('/metrics')
 def metrics():
